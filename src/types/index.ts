@@ -20,6 +20,11 @@ export interface NavItem {
   isActive?: boolean;
   items?: NavItem[];
   access?: PermissionCheck;
+  /**
+   * Optional identifier for items that represent
+   * a resume template preview instead of a normal link.
+   */
+  templateId?: string;
 }
 
 export interface NavItemWithChildren extends NavItem {

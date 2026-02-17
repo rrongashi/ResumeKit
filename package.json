@@ -15,7 +15,11 @@
     "lint:strict": "eslint --max-warnings=0 src",
     "format": "prettier --write .",
     "format:check": "prettier -c -w .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "lint-staged": {
     "**/*.{js,jsx,tsx,ts,css,less,scss,sass}": [
@@ -26,6 +30,7 @@
     "@clerk/nextjs": "^6.12.12",
     "@clerk/themes": "^2.2.26",
     "@hookform/resolvers": "^5.2.1",
+    "@prisma/client": "^7.4.0",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-aspect-ratio": "^1.1.2",
@@ -74,6 +79,8 @@
     "nextjs-toploader": "^3.7.15",
     "nuqs": "^2.4.1",
     "postcss": "8.4.49",
+    "prisma": "^7.4.0",
+    "puppeteer": "^24.37.3",
     "react": "^19.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^19.2.0",

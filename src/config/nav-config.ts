@@ -22,17 +22,11 @@ export const navItems: NavItem[] = [
     items: []
   },
   {
-    title: 'Account',
-    url: '#',
-    icon: 'account',
-    isActive: true,
-    items: [
-      {
-        title: 'Login',
-        shortcut: ['l', 'l'],
-        url: '/',
-        icon: 'login'
-      }
-    ]
+    title: 'Templates',
+    url: '/dashboard/templates',
+    icon: 'post',
+    shortcut: ['t', 't'],
+    isActive: false,
+    items: []
   }
 ];
