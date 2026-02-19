@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Eye, Plus } from 'lucide-react';
 
+import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 
 export interface TemplateItem {
@@ -78,11 +81,7 @@ export default function ScreenshotsPage() {
 
       <div className='grid grid-cols-1 gap-6 md:grid-cols-3'>
         {templates.map((template) => (
-          <figure
-            key={template.id}
-            className='flex cursor-pointer flex-col gap-2'
-            onClick={() => setZoomed(template)}
-          >
+          <figure key={template.id} className='group flex flex-col gap-2'>
             <div className='relative aspect-[210/297] w-full overflow-hidden rounded-lg'>
               <Image
                 src={template.imageUrl}
@@ -92,6 +91,35 @@ export default function ScreenshotsPage() {
                 sizes='(max-width: 768px) 100vw, 33vw'
                 unoptimized={template.imageUrl.startsWith('http')}
               />
+              <div className='absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-lg bg-black/20 opacity-0 transition-opacity group-hover:opacity-100'>
+                <Button
+                  type='button'
+                  size='icon'
+                  variant='secondary'
+                  className='h-12 w-12 rounded-full shadow-md'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setZoomed(template);
+                  }}
+                  aria-label={`Preview ${template.name}`}
+                >
+                  <Eye className='size-6' />
+                </Button>
+                <Button
+                  asChild
+                  size='icon'
+                  variant='secondary'
+                  className='h-12 w-12 rounded-full shadow-md'
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Link
+                    href={`/dashboard/html/new?template=${template.id}`}
+                    aria-label={`Create from ${template.name}`}
+                  >
+                    <Plus className='size-6' />
+                  </Link>
+                </Button>
+              </div>
             </div>
             <figcaption className='text-muted-foreground text-center text-sm'>
               {template.name}
@@ -101,16 +129,16 @@ export default function ScreenshotsPage() {
       </div>
 
       <Dialog open={!!zoomed} onOpenChange={(open) => !open && setZoomed(null)}>
-        <DialogContent className='flex max-h-[90vh] max-w-4xl flex-col border-0 bg-transparent p-0 shadow-none'>
+        <DialogContent className='flex max-h-[98vh] max-w-[98vw] flex-col border-0 bg-transparent p-0 shadow-none'>
           <DialogTitle className='sr-only'>{zoomed?.name}</DialogTitle>
           {zoomed && (
-            <div className='relative flex max-h-[90vh] w-full items-center justify-center'>
+            <div className='relative flex max-h-[98vh] w-full items-center justify-center'>
               <Image
                 src={zoomed.imageUrl}
                 alt={zoomed.name}
                 width={1400}
                 height={1600}
-                className='max-h-[85vh] w-auto max-w-full rounded-lg object-contain'
+                className='max-h-[96vh] w-auto max-w-[96vw] rounded-lg object-contain'
                 unoptimized={zoomed.imageUrl.startsWith('http')}
               />
             </div>

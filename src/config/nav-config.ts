@@ -14,14 +14,6 @@ export const navItems: NavItem[] = [
     items: []
   },
   {
-    title: 'Html',
-    url: '/dashboard/html',
-    icon: 'post',
-    shortcut: ['t', 't'],
-    isActive: false,
-    items: []
-  },
-  {
     title: 'Screenshots',
     url: '/dashboard/screenshots',
     icon: 'media',
